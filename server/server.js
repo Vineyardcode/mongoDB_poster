@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { body, validationResult } = require('express-validator');
+const dotenv = require('dotenv');
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb+srv://adam:admin@cluster0.ojjqodb.mongodb.net/test');
+dotenv.config()
+mongoose.connect(process.env.CONN_STRING);
 
 const leadSchema = new mongoose.Schema({
   estateType: String,
