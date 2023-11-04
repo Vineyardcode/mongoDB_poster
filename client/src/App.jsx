@@ -1,12 +1,10 @@
-import { useState } from 'react'
-import LeadForm from './components/LeadForm';
-
-
+import LeadFormWithRegionPicker from './components/LeadFormWithRegionPicker'
+ 
 function App() {
 
   return (
     <div className="App">
-      <LeadForm />
+      <LeadFormWithRegionPicker />
     </div>
   );
 }
