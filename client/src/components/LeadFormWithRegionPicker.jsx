@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -23,19 +23,9 @@ const LeadFormWithRegionPicker = () => {
     if (clickedDistrict) {
       setSelectedDistrict(clickedDistrict);
       setSelectedRegion(clickedRegion);
-      setFormData({
-        ...formData,
-        region: clickedRegion,
-        district: clickedDistrict,
-      });
     } else {
       setSelectedRegion(clickedRegion);
       setSelectedDistrict(null);
-      setFormData({
-        ...formData,
-        region: clickedRegion,
-        district: null,
-      });
     }
   };
 
@@ -85,6 +75,16 @@ const LeadFormWithRegionPicker = () => {
       console.error('Chyba:', error);
     }
   };
+  
+  console.log(districtsGeoJSON);
+  console.log(regionsGeoJSON);
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      region: selectedRegion,
+      district: selectedDistrict,
+    });
+  }, [selectedRegion, selectedDistrict]);
 
   return (
     <div>
@@ -145,6 +145,7 @@ const LeadFormWithRegionPicker = () => {
             {selectedRegion && (
               <GeoJSON
                 data={districtsGeoJSON}
+                
                 onEachFeature={(feature, layer) => {
                   layer.on({
                     click: (e) => {
@@ -152,6 +153,7 @@ const LeadFormWithRegionPicker = () => {
                     },
                   });
                 }}
+                
               />
             )}
           </MapContainer>
