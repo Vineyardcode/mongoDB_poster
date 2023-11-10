@@ -5,7 +5,6 @@ const { body, validationResult } = require('express-validator');
 const app = express();
 const PORT = 3000;
 
-
 mongoose.connect("mongodb+srv://adam:admin@cluster0.ojjqodb.mongodb.net/test");
 
 const leadSchema = new mongoose.Schema({

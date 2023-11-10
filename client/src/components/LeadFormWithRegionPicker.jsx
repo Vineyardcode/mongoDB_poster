@@ -145,7 +145,6 @@ const LeadFormWithRegionPicker = () => {
             {selectedRegion && (
               <GeoJSON
                 data={districtsGeoJSON}
-                
                 onEachFeature={(feature, layer) => {
                   layer.on({
                     click: (e) => {
